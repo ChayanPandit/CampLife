@@ -27,7 +27,10 @@ const MongoDBStore = require("connect-mongo");
 
 const dbUrl = process.env.DB_URL || 'mongodb://0.0.0.0:27017/yelp-camp';
 
-mongoose.connect(dbUrl,{ useNewUrlParser: true, useUnifiedTopology: true });
+mongoose
+    .connect(dbUrl,{ useNewUrlParser: true, useUnifiedTopology: true })
+    .catch (error => console.log(error));
+;
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
